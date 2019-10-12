@@ -25,7 +25,8 @@
     "@types/koa-convert": "^1.2.2",
     "@types/koa-mount": "^4.0.0",
     "@types/node": "^12.7.12",
-    "@types/swagger-jsdoc": "^3.0.2"
+    "@types/swagger-jsdoc": "^3.0.2",
+    "gyi": "^1.0.3"
   },
   "dependencies": {
     "is-type-of": "^1.2.1",
