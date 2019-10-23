@@ -102,14 +102,12 @@ export class Swagger {
         }
         if (!swaggerJSON) { swaggerJSON = {}; }
         app.use(swaggerUi.serve); //serve swagger static files
-        let paths: any[] = [];
-        paths = paths.concat(
-            config.paths || []
-        ).concat(
-            swaggerSpec.paths || []
-        ).concat(
-            swaggerJSON.paths || []
-        );
+        let paths: any = {};
+        paths = {
+            ...(config.paths || []),
+            ...(swaggerSpec.paths || []),
+            ...(swaggerJSON.paths || [])
+        };
         app.use(convert(mount(path, swaggerUi.setup({
             ...config,
             ...swaggerJSON,

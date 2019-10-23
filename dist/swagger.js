@@ -36,8 +36,8 @@ var Swagger = /** @class */ (function () {
             swaggerJSON = {};
         }
         app.use(swagger_ui_koa_1.default.serve); //serve swagger static files
-        var paths = [];
-        paths = paths.concat(config.paths || []).concat(swaggerSpec.paths || []).concat(swaggerJSON.paths || []);
+        var paths = {};
+        paths = __assign(__assign(__assign({}, (config.paths || [])), (swaggerSpec.paths || [])), (swaggerJSON.paths || []));
         app.use(koa_convert_1.default(koa_mount_1.default(path, swagger_ui_koa_1.default.setup(__assign(__assign(__assign(__assign({}, config), swaggerJSON), swaggerSpec), { paths: paths }), opts, options, customCss, customfavIcon, swaggerUrl, customeSiteTitle))));
     };
     return Swagger;
