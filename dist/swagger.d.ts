@@ -21,7 +21,53 @@ interface SwaggerUiOptions {
 interface SwaggerOptions {
     [key: string]: any;
 }
+export interface SwaggerJSON {
+    [x: string]: any;
+    swagger?: string;
+    info?: {
+        description?: string;
+        title?: string;
+        termsOfService?: string;
+        contact?: {
+            email?: string;
+        };
+        license?: {
+            name?: string;
+            url?: string;
+        };
+    };
+    host?: string;
+    basePath?: string;
+    tags?: {
+        name?: string;
+        description?: string;
+        externalDocs?: {
+            description?: string;
+            url?: string;
+        };
+    }[];
+    schemes?: string[];
+    paths?: {
+        [x: string]: any;
+    };
+    securityDefinitions?: {
+        api_key?: {
+            type?: string;
+            name?: string;
+            in?: string;
+        };
+        petstore_auth?: {
+            type?: string;
+            authorizationUrl?: string;
+            flow?: string;
+            scopes?: {
+                read?: string;
+                write?: string;
+            };
+        };
+    };
+}
 export declare class Swagger {
-    static build(path: string, app: Koa, swaggerDoc?: JsonObject | null, opts?: SwaggerUiOptions | false | null, options?: SwaggerOptions, customCss?: string | false | null, customfavIcon?: string | false | null, swaggerUrl?: string | false | null, customeSiteTitle?: string | false | null): void;
+    static build(path: string, app: Koa, swaggerJSON?: SwaggerJSON, swaggerDoc?: JsonObject | null, opts?: SwaggerUiOptions | false | null, options?: SwaggerOptions, customCss?: string | false | null, customfavIcon?: string | false | null, swaggerUrl?: string | false | null, customeSiteTitle?: string | false | null): void;
 }
 export {};
