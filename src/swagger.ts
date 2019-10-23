@@ -102,15 +102,19 @@ export class Swagger {
         }
         if (!swaggerJSON) { swaggerJSON = {}; }
         app.use(swaggerUi.serve); //serve swagger static files
+        let paths: any[] = [];
+        paths = paths.concat(
+            config.paths || []
+        ).concat(
+            swaggerSpec.paths || []
+        ).concat(
+            swaggerJSON.paths || []
+        );
         app.use(convert(mount(path, swaggerUi.setup({
-            ...swaggerSpec,
             ...config,
             ...swaggerJSON,
-            paths: [
-                ...(swaggerSpec.paths || []),
-                ...(config.paths || []),
-                ...(swaggerJSON.paths || [] as any)
-            ]
+            ...swaggerSpec,
+            paths
         }, opts, options, customCss, customfavIcon, swaggerUrl, customeSiteTitle
         ))));
     }

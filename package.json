@@ -1,6 +1,6 @@
 {
   "name": "pyi-swagger",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "pyi swagger",
   "main": "dist/index.js",
   "scripts": {

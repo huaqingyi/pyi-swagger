@@ -1,6 +1,5 @@
 import { PYIBootstrap, PYIApplication, autowired, PYIApplicationHook } from 'pyi';
 import Koa from 'koa';
-import { Schedule } from './components/schedule';
 import { SwaggerInjectService, Swagger } from '../../src';
 
 @PYIBootstrap
@@ -14,19 +13,15 @@ export class Application extends PYIApplication implements PYIApplicationHook {
         Application.runtime(__dirname);
     }
 
-    @autowired
-    public schedule!: Schedule;
-
-    constructor() {
-        super();
-        this.scheduleWork();
-    }
-
-    public async scheduleWork() {
-        await this.schedule.test();
-    }
-
     public async willInitApp(app: Koa) {
-        await Swagger.build('/swagger', app);
+        await Swagger.build('/swagger', app, {
+            securityDefinitions: {
+                api_key: {
+                    type: 'apiKey',
+                    name: 'authorization',
+                    in: 'header'
+                }
+            }
+        });
     }
 }

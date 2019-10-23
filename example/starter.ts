@@ -1,4 +1,4 @@
-const { Application } = require('./runtime/application');
+import { Application } from './src/application';
 
 const app = new Application();
 

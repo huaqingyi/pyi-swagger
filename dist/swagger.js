@@ -10,13 +10,6 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-var __spreadArrays = (this && this.__spreadArrays) || function () {
-    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
-    for (var r = Array(s), k = 0, i = 0; i < il; i++)
-        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
-            r[k] = a[j];
-    return r;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -43,7 +36,9 @@ var Swagger = /** @class */ (function () {
             swaggerJSON = {};
         }
         app.use(swagger_ui_koa_1.default.serve); //serve swagger static files
-        app.use(koa_convert_1.default(koa_mount_1.default(path, swagger_ui_koa_1.default.setup(__assign(__assign(__assign(__assign({}, swaggerSpec), config), swaggerJSON), { paths: __spreadArrays((swaggerSpec.paths || []), (config.paths || []), (swaggerJSON.paths || [])) }), opts, options, customCss, customfavIcon, swaggerUrl, customeSiteTitle))));
+        var paths = [];
+        paths = paths.concat(config.paths || []).concat(swaggerSpec.paths || []).concat(swaggerJSON.paths || []);
+        app.use(koa_convert_1.default(koa_mount_1.default(path, swagger_ui_koa_1.default.setup(__assign(__assign(__assign(__assign({}, config), swaggerJSON), swaggerSpec), { paths: paths }), opts, options, customCss, customfavIcon, swaggerUrl, customeSiteTitle))));
     };
     return Swagger;
 }());
