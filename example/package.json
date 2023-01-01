@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "body-parser": "^1.19.0",
-    "gyi": "^1.0.3",
+    "gyi": "^1.0.7",
     "koa": "^2.8.1",
     "koa-bodyparser": "^4.2.1",
     "koa-multer": "^1.0.2",
